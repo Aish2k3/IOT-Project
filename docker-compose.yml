@@ -2,9 +2,9 @@ version: '1'
 services:
   app:
     container_name: flaskapi
-    build: ./flask/.
+    build: ./backend/.
     ports:
-      - '5000:5000'
+      - 5000:5000
     depends_on:
       - db
     networks:
@@ -12,11 +12,11 @@ services:
 
   web:
     container_name: webreact
-    build: ./iotweb/.
+    build: ./frontend/.
     ports:
-      - '3000:3000'
-    depends_on:
-      - db
+      - 8000:8000
+    # depends_on:
+    #   - db
     networks:
       - backnet
 

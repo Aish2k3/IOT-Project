@@ -1,0 +1,32 @@
+version: '1'
+services:
+  app:
+    container_name: flaskapi
+    build: ./flask/.
+    ports:
+      - '5000:5000'
+    depends_on:
+      - db
+    networks:
+      - backnet
+
+  web:
+    container_name: webreact
+    build: ./iotweb/.
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    networks:
+      - backnet
+
+  db:
+    container_name: mongodb
+    image: mongo:latest
+    ports: 
+      - 27017:27017
+    networks:
+      - backnet
+
+networks:
+  backnet:

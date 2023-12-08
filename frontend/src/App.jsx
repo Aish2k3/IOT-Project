@@ -58,7 +58,7 @@ function App() {
 
   async function getData() {
     const res = await axios.get(
-      `http://localhost:5000/sensorData?userName=${userName}`
+      `http://13.233.199.201:5000/sensorData?userName=${userName}`
     );
     setData(res.data);
     console.log(res.data);

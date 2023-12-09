@@ -9,8 +9,8 @@ from datetime import datetime
 app = Flask(__name__)
 CORS(app)
 
-client = pymongo.MongoClient("mongodb://localhost:27017")
-# client = pymongo.MongoClient("mongodb://mongodb:27017")
+# client = pymongo.MongoClient("mongodb://localhost:27017")
+client = pymongo.MongoClient("mongodb://mongodb:27017")
 
 db = client["IoTSensor"]
 
@@ -87,9 +87,6 @@ def getAll_sensor_data():
     try:
         userName = request.args.get("userName")
         users = collection.find({"userName": userName})
-
-        if not userName:
-            return jsonify(test_value), 200
 
         output = [{
             'sensorName': user['sensorName'],

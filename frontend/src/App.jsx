@@ -27,7 +27,7 @@ function SensorTable({ sensorDataDummy }) {
           <th>Z</th>
           <th></th>
         </tr>
-        {sensorDataDummy.map((val, key) => {
+        {sensorDataDummy && sensorDataDummy.map((val, key) => {
           return (
             <tr key={key}>
               <td>{key + 1}</td>
@@ -50,6 +50,7 @@ function SensorTable({ sensorDataDummy }) {
 
 function App() {
   const [data, setData] = useState([]);
+  const [error,setError] = useState("")
   const [userName, setUserName] = useState(""); // New state for the username input
 
   useEffect(() => {
@@ -57,11 +58,17 @@ function App() {
   }, []);
 
   async function getData() {
+    if (userName==""){
+      const res = await axios.get(
+        `http://13.233.199.201:5000/sensorData?userName=Test`
+      );
+      setData(res.data);
+      return;
+    }
     const res = await axios.get(
       `http://13.233.199.201:5000/sensorData?userName=${userName}`
     );
     setData(res.data);
-    console.log(res.data);
   }
 
   const handleUsernameChange = (e) => {
@@ -97,7 +104,7 @@ function App() {
       {data && (
         <div>
           <button>
-            <CSVLink data={data}>Download me</CSVLink>
+            {data && <CSVLink data={data}>Download me</CSVLink>}
           </button>
         </div>
       )}

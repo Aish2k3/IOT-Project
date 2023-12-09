@@ -49,7 +49,7 @@ Access the web application by navigating to:
 
 To upload sensor data via ESP32, use Postman:
 
-- Postman URL: 
+- Postman URL: [Collection](https://drive.google.com/file/d/1_sSjuzkiFKvGsJOgwJBam1Yct58eC8qK/view?usp=sharing)
 
 ### Additional Information
 
